@@ -7,7 +7,7 @@ from models.amenity import Amenity
 from models.review import Review
 from models.city import City
 from sqlalchemy import create_engine
-from sqlalchemy.orm import session, sessionmaker, scoped_session
+from sqlalchemy.orm import sessionmaker, scoped_session
 from os import getenv
 
 class DBStorage:
@@ -61,5 +61,4 @@ class DBStorage:
 
     def close(self):
         """Calls remove() on self.__session"""
-        if self.__session:
-            self.__session.remove()
+        self.__session.close()
