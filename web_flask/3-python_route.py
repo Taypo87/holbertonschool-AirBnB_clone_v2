@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """task one starts flask web app"""
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -17,13 +17,13 @@ def heybnb():
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def cisntfun(text):
+def cisfun(text):
     return 'C ' + text.replace('_', ' ')
 
 
-@app.route('/python/<text>', defaults={'text': 'is cool'})
+@app.route('/python/')
 @app.route('/python/<text>', strict_slashes=False)
-def weluvpy(text):
+def weluvpy(text="is cool"):
     return 'Python ' + text.replace('_', ' ')
 
 
