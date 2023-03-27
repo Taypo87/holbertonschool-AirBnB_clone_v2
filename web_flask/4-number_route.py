@@ -26,12 +26,13 @@ def cisfun(text):
 def weluvpy(text="is cool"):
     return 'Python ' + text.replace('_', ' ')
 
-@app.route('/number/<n>')
+
+@app.route('/number/<n>', strict_slashes=False)
 def number(n):
     try:
         n = int(n)
         return "{} is a number".format(n)
-    except:
+    except TypeError:
         abort(404)
 
 
