@@ -58,3 +58,8 @@ class DBStorage:
     def new(self, obj):
         """Adds new object to storage dictionary"""
         self.__session.add(obj)
+
+    def close(self):
+        """Calls remove() on self.__session"""
+        if self.__session:
+            self.__session.remove()

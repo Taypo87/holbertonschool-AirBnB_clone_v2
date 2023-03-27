@@ -71,3 +71,7 @@ class FileStorage:
             if ob in self.__objects:
                 del self.__objects[ob]
                 self.save()
+
+    def close(self):
+        """Calls reload"""
+        self.reload()
