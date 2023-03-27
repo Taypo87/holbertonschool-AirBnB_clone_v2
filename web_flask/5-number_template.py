@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """task one starts flask web app"""
 
-from flask import Flask, abort
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -29,11 +29,12 @@ def weluvpy(text="is cool"):
 
 @app.route('/number/<n>', strict_slashes=False)
 def number(n):
-    try:
-        n = int(n)
-        return "{} is a number".format(n)
-    except:
-        abort(404)
+    return "{} is a number".format(n)
+
+
+@app.route('/number_template/<int:n>')
+def number_template(n):
+    return render_template('5-number.html', n=n)
 
 
 if __name__ == '__main__':
