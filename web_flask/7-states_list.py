@@ -1,27 +1,25 @@
 #!/usr/bin/python3
-# starts a webflask app
-
+""" Script that starts a Flask web application """
 from flask import Flask, render_template
 from models import storage
-from models.state import State
 
 
-@app.route('/states_list')
-"""states list"""
+app = Flask(__name__)
 
 
+@app.route('/states_lis', strict_slashes=False)
 def states_list():
-    return render_template('7-states_list.html',
-                           states=storage.all("State"))
+    """ State list """
+    states = storage.all("State")
+    states = [state for state in states.values()]
+    return render_template("7-states_list.html", states=states)
 
 
 @app.teardown_appcontext
-"""tear down"""
-
-
-def teardown(err):
+def teardown(exception):
+    """ Method to handle """
     storage.close()
 
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000, debug=True)
